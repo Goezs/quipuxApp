@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
+import 'package:quipux_app/components/appbar.dart';
+import 'package:quipux_app/constants/colors.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -13,49 +14,22 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _buildAppBar(),
+      appBar: buildAppBar(context),
       body: Stack(
         children: [
-          Align(
-            alignment: Alignment(0, -0.7),
-            child : Container(
-              width: 240,
-              height: 115,
-              child: Text('¡Bienvenido, ingresa al colegio Quipux y mira tus notas!',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w400
-                ),
-              ) 
-            ), 
-          ),
+          introductionMessage(),
           Center( 
-            child : Container(
+            child : SizedBox(
               height: 78,
               width: 256,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(70),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 3.0,
-                ),
-              ),
               child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                    (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return Theme.of(context).colorScheme.primary.withOpacity(0.5);
-                      }
-                      return null; // Use the component's default.
-                    },
-                  ),
+                style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.transparent,
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
                 },
-                  child: Text('Entra aquí',
+                  child: const Text('Entra aquí',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 40,
@@ -63,26 +37,38 @@ class _HomeState extends State<Home> {
                 ),
               )   
             )
-          )
+          ),
+          Align(
+            alignment: Alignment(-1, 0.7),
+            child: SizedBox(
+              height: 38,
+              width: 39,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: tdBGColor,
+                ),
+              ),
+              )
+            )
         ]
       ),
     );
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      backgroundColor: tdBGColor,
-      elevation: 0,
-      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Container(
-          child: ElevatedButton(
-            child: Image.asset('assets/images/quipux_logo.png'),
-            onPressed : () {
-              Navigator.popAndPushNamed(context, '/');
-            } 
-          )
-        ),
-      ]),
-    );
+  Align introductionMessage() {
+    return Align(
+          alignment: Alignment(0, -0.7),
+          child : Container(
+            width: 240,
+            height: 115,
+            child: Text('¡Bienvenido, ingresa al colegio Quipux y mira tus notas!',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.w400
+              ),
+            ) 
+          ), 
+        );
   }
 }

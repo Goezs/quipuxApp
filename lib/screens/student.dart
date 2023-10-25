@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../model/todo.dart';
 import '../constants/colors.dart';
 import '../widgets/todo_item.dart';
+import 'package:quipux_app/components/appbar.dart';
 
 class Student extends StatefulWidget {
   Student({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _StudentState extends State<Student> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _buildAppBar(),
+      appBar: buildAppBar(context),
       body: Stack(
         children: [
           Container(
@@ -191,23 +192,6 @@ class _StudentState extends State<Student> {
           hintStyle: TextStyle(color: tdGrey),
         ),
       ),
-    );
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      backgroundColor: tdBGColor,
-      elevation: 0,
-      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Container(
-          child: ElevatedButton(
-            child: Image.asset('assets/images/quipux_logo.png'),
-            onPressed : () {
-              Navigator.popAndPushNamed(context, '/');
-            } 
-          )
-        ),
-      ]),
     );
   }
 }

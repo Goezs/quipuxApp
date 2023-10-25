@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
+import 'package:quipux_app/components/appbar.dart';
+import 'package:quipux_app/constants/colors.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -13,54 +14,36 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _buildAppBar(),
+      appBar: buildAppBar(context),
       body: Stack(
         children: [
-          Container(
-            child: Center(
-              child: Text('Bienvenido',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w100),
-              ),
-            ) 
+          Center(
+            child: Text('Bienvenido',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w100),
+            ),
           ), 
-          Container(
-            child: ElevatedButton(
+          Align(
+            alignment: const Alignment(0, 0),
+            child : ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: tdBGColor,
+                shadowColor: tdBGColor,
+              ), 
+                child: const Text('Entra aquí',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w500),
+              ),
               onPressed: () {
                 Navigator.popAndPushNamed(context, '/student');
               },
-              child: Center(
-                child: Text('Ingresar',
-                  style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.w400),
-                ),
-              ),
-            )   
+            )
           )
         ]
       ),
-    );
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      backgroundColor: tdBGColor,
-      elevation: 0,
-      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Container(
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-            ),
-            child: Image.asset('assets/images/quipux_logo.png'),
-            onPressed : () {
-              Navigator.popAndPushNamed(context, '/');
-            } 
-          )
-        ),
-      ]),
     );
   }
 }
