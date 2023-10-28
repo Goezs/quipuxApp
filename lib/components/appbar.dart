@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quipux_app/constants/colors.dart';
 
- buildAppBar(context) {
+buildAppBar(context) {
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: tdBGColor,

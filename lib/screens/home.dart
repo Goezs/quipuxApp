@@ -17,6 +17,47 @@ class _HomeState extends State<Home> {
       appBar: buildAppBar(context),
       body: Stack(
         children: [
+          RotationTransition(
+            turns: const AlwaysStoppedAnimation(60 / 360),
+            child: ShaderMask( 
+              shaderCallback : (Rect bounds){
+                return LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [tdBGColor, tdBlack],
+                ).createShader(bounds);
+              },
+              child: Align(
+                alignment: const Alignment(-1.8, -1.7),
+                child: SizedBox(
+                  height: 434.48,
+                  width: 182,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: tdBGColor,
+                      borderRadius: BorderRadius.circular(77)
+                    ),
+                  ),
+                )
+              )
+            )
+          ),
+          RotationTransition(
+            turns: const AlwaysStoppedAnimation(120 / 360),
+            child: Align(
+              alignment: const Alignment(1.8, -1.7),
+              child: SizedBox(
+                height: 434.48,
+                width: 182,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tdBGColor,
+                    borderRadius: BorderRadius.circular(77)
+                  ),
+                ),
+              )
+            )
+          ),
           introductionMessage(),
           Center( 
             child : SizedBox(
@@ -39,17 +80,12 @@ class _HomeState extends State<Home> {
             )
           ),
           Align(
-            alignment: Alignment(-1, 0.7),
+            alignment: Alignment(-1, 1),
             child: SizedBox(
-              height: 38,
-              width: 39,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: tdBGColor,
-                ),
-              ),
-              )
+              height: 60,
+              width: 59,
             )
+          )
         ]
       ),
     );
