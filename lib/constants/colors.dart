@@ -8,4 +8,5 @@ const Color tdGrey = Color(0xFF717171);
 
 const Color tdBGColor = Color(0xFFEEEFF5);
 
-const Color tdBlueDark = Color.fromARGB(0, 133, 170, 226);
+const Color tdBlueDark = Color(0xFF85AAE2); 
+const Color tdGreen = Color(0xFFDEE2B2);

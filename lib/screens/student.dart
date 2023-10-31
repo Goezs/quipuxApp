@@ -5,13 +5,29 @@ import '../widgets/todo_item.dart';
 import 'package:quipux_app/components/appbar.dart';
 
 class Student extends StatefulWidget {
-  Student({Key? key}) : super(key: key);
+  Student({
+    Key? key,
+    required this.studentName,
+    required this.studentEmail,
+    required this.studentItt
+    }) : super(key: key);
+
+  String studentName, studentEmail, studentItt;
 
   @override
-  State<Student> createState() => _StudentState();
+  State<Student> createState() {
+    return _StudentState(
+      studentName,
+      studentEmail,
+      studentItt
+      );
+    }
 }
 
 class _StudentState extends State<Student> {
+  String studentName, studentEmail, studentItt;
+  _StudentState(this.studentName, this.studentEmail, this.studentItt);
+
   final todosList = ToDo.todoList();
   List<ToDo> _foundToDo = [];
   final _todoController = TextEditingController();
@@ -29,41 +45,78 @@ class _StudentState extends State<Student> {
       appBar: buildAppBar(context),
       body: Stack(
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 15,
-            ),
-            child: Column(
-              children: [
-                searchBox(),
-                Expanded(
-                  child: ListView(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: 50,
-                          bottom: 20,
-                        ),
-                        child: Text(
-                          'All ToDos',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
-                          ),
+          Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  children: [
+                    Text('Nombre del estudiante',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ), 
+                    Text(studentName,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w200,
+                      ),
+                    ), 
+                    Text('Correo del estudiante',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ), 
+                    Text(studentEmail,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w200,
+                      ),
+                    ), 
+                    Text('Documento de identidad',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(studentItt,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w200,
+                      ),
+                    ), 
+                  ], 
+                ) 
+              ),
+              searchBox(),
+              Expanded(
+                child: ListView(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: 50,
+                        bottom: 20,
+                      ),
+                      child: Text(
+                        'Lista de tareas',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      for (ToDo todoo in _foundToDo.reversed)
-                        ToDoItem(
-                          todo: todoo,
-                          onToDoChanged: _handleToDoChange,
-                          onDeleteItem: _deleteToDoItem,
-                        ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+                    ),
+                    for (ToDo todoo in _foundToDo.reversed)
+                      ToDoItem(
+                        todo: todoo,
+                        onToDoChanged: _handleToDoChange,
+                        onDeleteItem: _deleteToDoItem,
+                      ),
+                  ],
+                ),
+              )
+            ],
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -94,8 +147,9 @@ class _StudentState extends State<Student> {
                   child: TextField(
                     controller: _todoController,
                     decoration: InputDecoration(
-                        hintText: 'Add a new todo item',
-                        border: InputBorder.none),
+                      hintText: 'Add a new todo item',
+                      border: InputBorder.none
+                    ),
                   ),
                 ),
               ),
@@ -182,9 +236,7 @@ class _StudentState extends State<Student> {
             Icons.search,
             color: tdBlack,
             size: 20,
-          ),
-          prefixIconConstraints: BoxConstraints(
-            maxHeight: 20,
+          ), prefixIconConstraints: BoxConstraints( maxHeight: 20,
             minWidth: 25,
           ),
           border: InputBorder.none,

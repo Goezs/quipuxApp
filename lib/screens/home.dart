@@ -17,18 +17,18 @@ class _HomeState extends State<Home> {
       appBar: buildAppBar(context),
       body: Stack(
         children: [
-          RotationTransition(
-            turns: const AlwaysStoppedAnimation(60 / 360),
-            child: ShaderMask( 
-              shaderCallback : (Rect bounds){
-                return LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [tdBGColor, tdBlack],
-                ).createShader(bounds);
-              },
+          ShaderMask( 
+            shaderCallback : (rect){
+              return LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomLeft,
+                colors: [tdBGColor, Colors.white],
+              ).createShader(Rect.fromLTRB(155, 209, 780, 25));
+            },
+            child: RotationTransition(
+              turns: const AlwaysStoppedAnimation(81 / 360),
               child: Align(
-                alignment: const Alignment(-1.8, -1.7),
+                alignment: const Alignment(-1.5, -0.85),
                 child: SizedBox(
                   height: 434.48,
                   width: 182,
@@ -42,19 +42,28 @@ class _HomeState extends State<Home> {
               )
             )
           ),
-          RotationTransition(
-            turns: const AlwaysStoppedAnimation(120 / 360),
-            child: Align(
-              alignment: const Alignment(1.8, -1.7),
-              child: SizedBox(
-                height: 434.48,
-                width: 182,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: tdBGColor,
-                    borderRadius: BorderRadius.circular(77)
+          ShaderMask( 
+            shaderCallback : (rect){
+              return LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topCenter,
+                colors: [Colors.white, tdBGColor],
+              ).createShader(Rect.fromLTRB(500, 168, 315, 250));
+            },
+            child: RotationTransition(
+              turns: const AlwaysStoppedAnimation(275 / 360),
+              child: Align(
+                alignment: const Alignment(-1.35, -0.4),
+                child: SizedBox(
+                  height: 444,
+                  width: 182,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: tdBGColor,
+                      borderRadius: BorderRadius.circular(77)
+                    ),
                   ),
-                ),
+                )
               )
             )
           ),
@@ -79,6 +88,7 @@ class _HomeState extends State<Home> {
               )   
             )
           ),
+          contactMessage(),
           Align(
             alignment: Alignment(-1, 1),
             child: SizedBox(
@@ -98,6 +108,23 @@ class _HomeState extends State<Home> {
             width: 240,
             height: 115,
             child: Text('¡Bienvenido, ingresa al colegio Quipux y mira tus notas!',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.w400
+              ),
+            ) 
+          ), 
+        );
+  }
+
+  Align contactMessage() {
+    return Align(
+          alignment: Alignment(0.2, 0.55),
+          child : Container(
+            width: 240,
+            height: 115,
+            child: Text('Contáctanos en nuestras redes sociales',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 25,
