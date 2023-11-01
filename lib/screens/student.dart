@@ -3,6 +3,7 @@ import '../model/todo.dart';
 import '../constants/colors.dart';
 import '../widgets/todo_item.dart';
 import 'package:quipux_app/components/appbar.dart';
+import 'package:quipux_app/widgets/grade_table.dart';
 
 class Student extends StatefulWidget {
   Student({
@@ -45,7 +46,7 @@ class _StudentState extends State<Student> {
       appBar: buildAppBar(context),
       body: Stack(
         children: [
-          Column(
+          ListView(
             children: [
               Align(
                 alignment: Alignment.topLeft,
@@ -89,10 +90,11 @@ class _StudentState extends State<Student> {
                     ), 
                   ], 
                 ) 
-              ),
+              ), 
+              SortableTable(),
               searchBox(),
               Expanded(
-                child: ListView(
+                child: Column(
                   children: [
                     Container(
                       margin: EdgeInsets.only(
@@ -102,9 +104,8 @@ class _StudentState extends State<Student> {
                       child: Text(
                         'Lista de tareas',
                         style: TextStyle(
-                          fontSize: 30,
                           fontWeight: FontWeight.w500,
-                        ),
+                        )
                       ),
                     ),
                     for (ToDo todoo in _foundToDo.reversed)
