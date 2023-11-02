@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quipux_app/constants/colors.dart';
 import 'package:quipux_app/model/grades.dart';
 
 class SortableTable extends StatefulWidget {
@@ -31,6 +32,17 @@ class _SortableTableState extends State<SortableTable> {
       sortColumnIndex: sortColumnIndex,
       columns: getColumns(columns),
       rows: getRows(grades),
+      decoration: BoxDecoration(
+        color: tdBGColor,
+        border: Border.all(
+          color: tdBGColor,
+          width: 20
+        ),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(65),
+          bottomRight: Radius.circular(65)
+        ),
+      )
     );
   }
 
@@ -44,7 +56,8 @@ class _SortableTableState extends State<SortableTable> {
   List<DataRow> getRows(List<Grade> grades) => grades.map((Grade grade) {
         final cells = [grade.teacherName, grade.day, grade.grade];
 
-        return DataRow(cells: getCells(cells));
+        return DataRow(
+          cells: getCells(cells));
       }).toList();
 
   List<DataCell> getCells(List<dynamic> cells) =>
@@ -56,7 +69,7 @@ class _SortableTableState extends State<SortableTable> {
           compareString(ascending, grade1.teacherName, grade2.teacherName));
     } else if (columnIndex == 1) {
       grades.sort((grade1, grade2) =>
-          compareString(ascending, '$grade1.day', '$grade2.day'));
+          compareString(ascending, '${grade1.day}', '${grade2.day}'));
     } else if (columnIndex == 2) {
       grades.sort((grade1, grade2) =>
           compareString(ascending, '${grade1.grade}', '${grade2.grade}'));

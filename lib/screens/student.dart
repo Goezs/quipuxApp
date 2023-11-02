@@ -33,6 +33,9 @@ class _StudentState extends State<Student> {
   List<ToDo> _foundToDo = [];
   final _todoController = TextEditingController();
 
+  bool showStudentTable = false;
+  bool showGradeTable = false;
+
   @override
   void initState() {
     _foundToDo = todosList;
@@ -46,77 +49,162 @@ class _StudentState extends State<Student> {
       appBar: buildAppBar(context),
       body: Stack(
         children: [
+          ShaderMask( 
+            shaderCallback : (rect){
+              return LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomLeft,
+                colors: [tdBGColor, Colors.white],
+              ).createShader(Rect.fromLTRB(50, 250, 10, 350));
+            },
+            child: RotationTransition(
+              turns: const AlwaysStoppedAnimation(60 / 360),
+              child: Align(
+                alignment: const Alignment(-1.9, -3),
+                child: SizedBox(
+                  height: 492,
+                  width: 169.13,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: tdBGColor,
+                      borderRadius: BorderRadius.circular(77)
+                    ),
+                  ),
+                )
+              )
+            )
+          ),
+          ShaderMask( 
+            shaderCallback : (rect){
+              return LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topCenter,
+                colors: [Colors.red, Colors.white],
+              ).createShader(Rect.fromLTRB(280, 230, 390, 880));
+            },
+            child: RotationTransition(
+              turns: const AlwaysStoppedAnimation(130 / 360),
+              child: Align(
+                alignment: const Alignment(2.34, 0.8),
+                child: SizedBox(
+                  height: 494,
+                  width: 169.13,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: tdBGColor,
+                      borderRadius: BorderRadius.circular(77)
+                    ),
+                  ),
+                )
+              )
+            )
+          ),
           ListView(
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Column(
-                  children: [
-                    Text('Nombre del estudiante',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ), 
-                    Text(studentName,
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w200,
-                      ),
-                    ), 
-                    Text('Correo del estudiante',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ), 
-                    Text(studentEmail,
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w200,
-                      ),
-                    ), 
-                    Text('Documento de identidad',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                      ),
+              const SizedBox(height: 59),
+              SizedBox(
+                height: 39,
+                child: ElevatedButton(
+                  onPressed: (){
+                    setState(() {
+                      showStudentTable =  !showStudentTable;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: tdBGColor,
+                    shadowColor: Colors.white,
+                  ),
+                  child: Text('Datos del estudiante',
+                    style: TextStyle(
+                      color: tdBlack, 
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
                     ),
-                    Text(studentItt,
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w200,
-                      ),
-                    ), 
-                  ], 
-                ) 
-              ), 
-              SortableTable(),
-              searchBox(),
-              Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: 50,
-                        bottom: 20,
-                      ),
-                      child: Text(
-                        'Lista de tareas',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                        )
-                      ),
-                    ),
-                    for (ToDo todoo in _foundToDo.reversed)
-                      ToDoItem(
-                        todo: todoo,
-                        onToDoChanged: _handleToDoChange,
-                        onDeleteItem: _deleteToDoItem,
-                      ),
-                  ],
+                  ),
                 ),
-              )
+              ), 
+              Visibility(
+                visible: showStudentTable,
+                child: SingleChildScrollView( 
+                  scrollDirection: Axis.vertical,
+                  child: FittedBox(
+                    child: DataTable(
+                      columns: [
+                      DataColumn(label: Text('Nombre')),
+                      DataColumn(label: Text('Documento de identidad')),
+                      DataColumn(label: Text('Correo')),
+                      ],
+                      rows: [
+                        DataRow(cells: [
+                          DataCell(Text(studentName)),
+                          DataCell(Text(studentItt)),
+                          DataCell(Text(studentEmail)),
+                        ])
+                      ],
+                      decoration: BoxDecoration(
+                        color: tdBGColor,
+                        border: Border.all(
+                          color: tdBGColor,
+                          width: 0,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(35),
+                          bottomRight: Radius.circular(35)
+                        ),
+                      )
+                    ) 
+                  )
+                )
+              ),
+              const SizedBox(height: 59),
+              SizedBox(
+                height: 43,
+                child: ElevatedButton(
+                  onPressed: (){
+                    setState(() {
+                      showGradeTable =  !showGradeTable;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: tdBGColor,
+                    shadowColor: Colors.white,
+                  ),
+                  child: Text('Notas del estudiante',
+                    style: TextStyle(
+                      color: tdBlack, 
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: showGradeTable,
+                child: SortableTable(),
+              ),
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: 50,
+                      bottom: 20,
+                    ),
+                    child: Text(
+                      'Lista de tareas',
+                      style: TextStyle(
+                        fontSize: 39,
+                        fontWeight: FontWeight.w500,
+                      )
+                    ),
+                  ),
+                  for (ToDo todoo in _foundToDo.reversed)
+                    ToDoItem(
+                      todo: todoo,
+                      onToDoChanged: _handleToDoChange,
+                      onDeleteItem: _deleteToDoItem,
+                    ),
+                ],
+              ),
             ],
           ),
           Align(
@@ -220,31 +308,5 @@ class _StudentState extends State<Student> {
     setState(() {
       _foundToDo = results;
     });
-  }
-
-  Widget searchBox() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: TextField(
-        onChanged: (value) => _runFilter(value),
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(0),
-          prefixIcon: Icon(
-            Icons.search,
-            color: tdBlack,
-            size: 20,
-          ), prefixIconConstraints: BoxConstraints( maxHeight: 20,
-            minWidth: 25,
-          ),
-          border: InputBorder.none,
-          hintText: 'Search',
-          hintStyle: TextStyle(color: tdGrey),
-        ),
-      ),
-    );
   }
 }
