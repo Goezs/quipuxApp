@@ -4,7 +4,7 @@ import 'package:quipux_app/constants/colors.dart';
 import 'package:quipux_app/screens/student.dart';
 
 class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
             padding: const EdgeInsets.all(20.0),
             child: ListView(
               children: [
-                Align(
+                const Align(
                   alignment: Alignment(0, 2),
                   child: Text('Ingresa tus datos',
                     style: TextStyle(
@@ -75,11 +75,11 @@ class _LoginState extends State<Login> {
   ShaderMask backgroundRectangleTrhee() {
     return ShaderMask( 
           shaderCallback : (rect){
-            return LinearGradient(
+            return const LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topCenter,
               colors: [tdGreen, Colors.white],
-            ).createShader(Rect.fromLTRB(450, 20, 0, 250));
+            ).createShader(const Rect.fromLTRB(450, 20, 0, 250));
           },
           child: RotationTransition(
             turns: const AlwaysStoppedAnimation(160 / 360),
@@ -103,11 +103,11 @@ class _LoginState extends State<Login> {
   ShaderMask backgroundRectangleTwo() {
     return ShaderMask( 
           shaderCallback : (rect){
-            return LinearGradient(
+            return const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomLeft,
               colors: [tdGreen, Colors.white],
-            ).createShader(Rect.fromLTRB(290, 20, 0, 250));
+            ).createShader(const Rect.fromLTRB(290, 20, 0, 250));
           },
           child: RotationTransition(
             turns: const AlwaysStoppedAnimation(160 / 360),
@@ -131,11 +131,11 @@ class _LoginState extends State<Login> {
   ShaderMask backgroundRectangleOne() {
     return ShaderMask( 
           shaderCallback : (rect){
-            return LinearGradient(
+            return const LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topCenter,
               colors: [tdGreen, Colors.white],
-            ).createShader(Rect.fromLTRB(550, 20, 0, 250));
+            ).createShader(const Rect.fromLTRB(550, 20, 0, 250));
           },
           child: RotationTransition(
             turns: const AlwaysStoppedAnimation(160 / 360),

@@ -3,7 +3,7 @@ import 'package:quipux_app/components/appbar.dart';
 import 'package:quipux_app/constants/colors.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -44,18 +44,18 @@ class _HomeState extends State<Home> {
             )
           ),
           contactMessage(),
-          Align(
+          const Align(
             alignment: Alignment(-1, 1),
             child: SizedBox(
               height: 60,
               width: 59,
             )
           ),
-          Align(
+          const Align(
             alignment: Alignment(1, 0.77),
             child: Row(
               children: [
-                const SizedBox(width: 12),
+                SizedBox(width: 12),
                 Row(
                   children: [
                     Icon(Icons.linked_camera_outlined),
@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
                     )
                   ]
                 ),
-                const SizedBox(width: 33),
+                SizedBox(width: 33),
                 Row(
                   children: [
                     Icon(Icons.language),
@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
                     )
                   ]
                 ),
-                const SizedBox(width: 33),
+                SizedBox(width: 33),
                 Row(
                   children: [
                     Icon(Icons.facebook),
@@ -102,11 +102,11 @@ class _HomeState extends State<Home> {
   ShaderMask backgroundRectangleTwo() {
     return ShaderMask( 
           shaderCallback : (rect){
-            return LinearGradient(
+            return const LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topCenter,
               colors: [Colors.white, tdBGColor],
-            ).createShader(Rect.fromLTRB(500, 168, 315, 250));
+            ).createShader(const Rect.fromLTRB(500, 168, 315, 250));
           },
           child: RotationTransition(
             turns: const AlwaysStoppedAnimation(275 / 360),
@@ -130,11 +130,11 @@ class _HomeState extends State<Home> {
   ShaderMask backgroundRectangleOne() {
     return ShaderMask( 
           shaderCallback : (rect){
-            return LinearGradient(
+            return const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomLeft,
               colors: [tdBGColor, Colors.white],
-            ).createShader(Rect.fromLTRB(155, 209, 780, 25));
+            ).createShader(const Rect.fromLTRB(155, 209, 780, 25));
           },
           child: RotationTransition(
             turns: const AlwaysStoppedAnimation(81 / 360),
@@ -156,9 +156,9 @@ class _HomeState extends State<Home> {
   }
 
   Align introductionMessage() {
-    return Align(
+    return const Align(
           alignment: Alignment(0, -0.7),
-          child : Container(
+          child : SizedBox(
             width: 240,
             height: 115,
             child: Text('¡Bienvenido, ingresa al colegio Quipux y mira tus notas!',
@@ -173,9 +173,9 @@ class _HomeState extends State<Home> {
   }
 
   Align contactMessage() {
-    return Align(
+    return const Align(
           alignment: Alignment(0.2, 0.55),
-          child : Container(
+          child : SizedBox(
             width: 240,
             height: 115,
             child: Text('Contáctanos en nuestras redes sociales',

@@ -66,7 +66,7 @@ class _StudentState extends State<Student> {
                     backgroundColor: tdBGColor,
                     shadowColor: Colors.white,
                   ),
-                  child: Text('Datos del estudiante',
+                  child: const Text('Datos del estudiante',
                     style: TextStyle(
                       color: tdBlack, 
                       fontSize: 25,
@@ -81,7 +81,7 @@ class _StudentState extends State<Student> {
                   scrollDirection: Axis.vertical,
                   child: FittedBox(
                     child: DataTable(
-                      columns: [
+                      columns: const [
                       DataColumn(label: Text('Nombre')),
                       DataColumn(label: Text('Documento de identidad')),
                       DataColumn(label: Text('Correo')),
@@ -99,7 +99,7 @@ class _StudentState extends State<Student> {
                           color: tdBGColor,
                           width: 0,
                         ),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(35),
                           bottomRight: Radius.circular(35)
                         ),
@@ -137,11 +137,11 @@ class _StudentState extends State<Student> {
               Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       top: 50,
                       bottom: 20,
                     ),
-                    child: Text(
+                    child: const Text(
                       'Lista de tareas',
                       style: TextStyle(
                         fontSize: 39,
@@ -164,12 +164,12 @@ class _StudentState extends State<Student> {
             child: Row(children: [
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     bottom: 20,
                     right: 20,
                     left: 20,
                   ),
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 20,
                     vertical: 5,
                   ),
@@ -187,7 +187,7 @@ class _StudentState extends State<Student> {
                   ),
                   child: TextField(
                     controller: _todoController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Añadir una nueva tarea',
                       border: InputBorder.none
                     ),
@@ -195,7 +195,7 @@ class _StudentState extends State<Student> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   bottom: 20,
                   right: 20,
                 ),
@@ -226,11 +226,11 @@ class _StudentState extends State<Student> {
   ShaderMask backgroundRectangleTwo() {
     return ShaderMask( 
           shaderCallback : (rect){
-            return LinearGradient(
+            return const LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topCenter,
               colors: [Colors.red, Colors.white],
-            ).createShader(Rect.fromLTRB(280, 230, 390, 880));
+            ).createShader(const Rect.fromLTRB(280, 230, 390, 880));
           },
           child: RotationTransition(
             turns: const AlwaysStoppedAnimation(130 / 360),
@@ -254,11 +254,11 @@ class _StudentState extends State<Student> {
   ShaderMask backgroundRectangleOne() {
     return ShaderMask( 
           shaderCallback : (rect){
-            return LinearGradient(
+            return const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomLeft,
               colors: [tdBGColor, Colors.white],
-            ).createShader(Rect.fromLTRB(50, 250, 10, 350));
+            ).createShader(const Rect.fromLTRB(50, 250, 10, 350));
           },
           child: RotationTransition(
             turns: const AlwaysStoppedAnimation(60 / 360),
