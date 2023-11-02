@@ -16,8 +16,6 @@ class _LoginState extends State<Login> {
   final _studentEmailController = TextEditingController();
   final _studentIttController = TextEditingController();
 
-  final _formkey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,83 +23,9 @@ class _LoginState extends State<Login> {
       appBar: buildAppBar(context),
       body: Stack(
         children: [
-          ShaderMask( 
-            shaderCallback : (rect){
-              return LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topCenter,
-                colors: [tdGreen, Colors.white],
-              ).createShader(Rect.fromLTRB(550, 20, 0, 250));
-            },
-            child: RotationTransition(
-              turns: const AlwaysStoppedAnimation(160 / 360),
-              child: Align(
-                alignment: const Alignment(-1.6, 1.0),
-                child: SizedBox(
-                  height: 472,
-                  width: 169.13,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: tdBGColor,
-                      borderRadius: BorderRadius.circular(77)
-                    ),
-                  ),
-                )
-              )
-            )
-          ),
-          ShaderMask( 
-            shaderCallback : (rect){
-              return LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomLeft,
-                colors: [tdGreen, Colors.white],
-              ).createShader(Rect.fromLTRB(290, 20, 0, 250));
-            },
-            child: RotationTransition(
-              turns: const AlwaysStoppedAnimation(160 / 360),
-              child: Align(
-                alignment: const Alignment(0.2, 4.8),
-                child: SizedBox(
-                  height: 594,
-                  width: 169.13,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: tdBGColor,
-                      borderRadius: BorderRadius.circular(77)
-                    ),
-                  ),
-                )
-              )
-            )
-          ),
-          ShaderMask( 
-            shaderCallback : (rect){
-              return LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topCenter,
-                colors: [tdGreen, Colors.white],
-              ).createShader(Rect.fromLTRB(450, 20, 0, 250));
-            },
-            child: RotationTransition(
-              turns: const AlwaysStoppedAnimation(160 / 360),
-              child: Align(
-                alignment: const Alignment(2.0, -1.8),
-                child: SizedBox(
-                  height: 472,
-                  width: 169.13,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: tdBGColor,
-                      borderRadius: BorderRadius.circular(77)
-                    ),
-                  ),
-                )
-              )
-            )
-          ),
-
-
+          backgroundRectangleOne(),
+          backgroundRectangleTwo(),
+          backgroundRectangleTrhee(),
           Container(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
@@ -148,6 +72,90 @@ class _LoginState extends State<Login> {
     );
   }
 
+  ShaderMask backgroundRectangleTrhee() {
+    return ShaderMask( 
+          shaderCallback : (rect){
+            return LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topCenter,
+              colors: [tdGreen, Colors.white],
+            ).createShader(Rect.fromLTRB(450, 20, 0, 250));
+          },
+          child: RotationTransition(
+            turns: const AlwaysStoppedAnimation(160 / 360),
+            child: Align(
+              alignment: const Alignment(2.0, -1.8),
+              child: SizedBox(
+                height: 472,
+                width: 169.13,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tdBGColor,
+                    borderRadius: BorderRadius.circular(77)
+                  ),
+                ),
+              )
+            )
+          )
+        );
+  }
+
+  ShaderMask backgroundRectangleTwo() {
+    return ShaderMask( 
+          shaderCallback : (rect){
+            return LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomLeft,
+              colors: [tdGreen, Colors.white],
+            ).createShader(Rect.fromLTRB(290, 20, 0, 250));
+          },
+          child: RotationTransition(
+            turns: const AlwaysStoppedAnimation(160 / 360),
+            child: Align(
+              alignment: const Alignment(0.2, 4.8),
+              child: SizedBox(
+                height: 594,
+                width: 169.13,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tdBGColor,
+                    borderRadius: BorderRadius.circular(77)
+                  ),
+                ),
+              )
+            )
+          )
+        );
+  }
+
+  ShaderMask backgroundRectangleOne() {
+    return ShaderMask( 
+          shaderCallback : (rect){
+            return LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topCenter,
+              colors: [tdGreen, Colors.white],
+            ).createShader(Rect.fromLTRB(550, 20, 0, 250));
+          },
+          child: RotationTransition(
+            turns: const AlwaysStoppedAnimation(160 / 360),
+            child: Align(
+              alignment: const Alignment(-1.6, 1.0),
+              child: SizedBox(
+                height: 472,
+                width: 169.13,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tdBGColor,
+                    borderRadius: BorderRadius.circular(77)
+                  ),
+                ),
+              )
+            )
+          )
+        );
+  }
+
   //Function that returns OutlinedButton Widget also it pass data to Details Screen
   OutlinedButton myBtn(BuildContext context) {
     return OutlinedButton(
@@ -172,7 +180,7 @@ class _LoginState extends State<Login> {
         "Ingresar".toUpperCase(),
         style: const TextStyle(
           fontWeight: FontWeight.bold,
-          color: Colors.deepPurple,
+          color: Colors.white,
           fontSize: 30
         ),
       ),

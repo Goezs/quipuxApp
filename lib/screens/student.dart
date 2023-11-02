@@ -49,56 +49,8 @@ class _StudentState extends State<Student> {
       appBar: buildAppBar(context),
       body: Stack(
         children: [
-          ShaderMask( 
-            shaderCallback : (rect){
-              return LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomLeft,
-                colors: [tdBGColor, Colors.white],
-              ).createShader(Rect.fromLTRB(50, 250, 10, 350));
-            },
-            child: RotationTransition(
-              turns: const AlwaysStoppedAnimation(60 / 360),
-              child: Align(
-                alignment: const Alignment(-1.9, -3),
-                child: SizedBox(
-                  height: 492,
-                  width: 169.13,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: tdBGColor,
-                      borderRadius: BorderRadius.circular(77)
-                    ),
-                  ),
-                )
-              )
-            )
-          ),
-          ShaderMask( 
-            shaderCallback : (rect){
-              return LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topCenter,
-                colors: [Colors.red, Colors.white],
-              ).createShader(Rect.fromLTRB(280, 230, 390, 880));
-            },
-            child: RotationTransition(
-              turns: const AlwaysStoppedAnimation(130 / 360),
-              child: Align(
-                alignment: const Alignment(2.34, 0.8),
-                child: SizedBox(
-                  height: 494,
-                  width: 169.13,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: tdBGColor,
-                      borderRadius: BorderRadius.circular(77)
-                    ),
-                  ),
-                )
-              )
-            )
-          ),
+          backgroundRectangleOne(),
+          backgroundRectangleTwo(),
           ListView(
             children: [
               const SizedBox(height: 59),
@@ -236,7 +188,7 @@ class _StudentState extends State<Student> {
                   child: TextField(
                     controller: _todoController,
                     decoration: InputDecoration(
-                      hintText: 'Add a new todo item',
+                      hintText: 'Añadir una nueva tarea',
                       border: InputBorder.none
                     ),
                   ),
@@ -269,6 +221,62 @@ class _StudentState extends State<Student> {
         ],
       ),
     );
+  }
+
+  ShaderMask backgroundRectangleTwo() {
+    return ShaderMask( 
+          shaderCallback : (rect){
+            return LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topCenter,
+              colors: [Colors.red, Colors.white],
+            ).createShader(Rect.fromLTRB(280, 230, 390, 880));
+          },
+          child: RotationTransition(
+            turns: const AlwaysStoppedAnimation(130 / 360),
+            child: Align(
+              alignment: const Alignment(2.34, 0.8),
+              child: SizedBox(
+                height: 494,
+                width: 169.13,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tdBGColor,
+                    borderRadius: BorderRadius.circular(77)
+                  ),
+                ),
+              )
+            )
+          )
+        );
+  }
+
+  ShaderMask backgroundRectangleOne() {
+    return ShaderMask( 
+          shaderCallback : (rect){
+            return LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomLeft,
+              colors: [tdBGColor, Colors.white],
+            ).createShader(Rect.fromLTRB(50, 250, 10, 350));
+          },
+          child: RotationTransition(
+            turns: const AlwaysStoppedAnimation(60 / 360),
+            child: Align(
+              alignment: const Alignment(-1.9, -3),
+              child: SizedBox(
+                height: 492,
+                width: 169.13,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tdBGColor,
+                    borderRadius: BorderRadius.circular(77)
+                  ),
+                ),
+              )
+            )
+          )
+        );
   }
 
   void _handleToDoChange(ToDo todo) {

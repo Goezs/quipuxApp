@@ -17,56 +17,8 @@ class _HomeState extends State<Home> {
       appBar: buildAppBar(context),
       body: Stack(
         children: [
-          ShaderMask( 
-            shaderCallback : (rect){
-              return LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomLeft,
-                colors: [tdBGColor, Colors.white],
-              ).createShader(Rect.fromLTRB(155, 209, 780, 25));
-            },
-            child: RotationTransition(
-              turns: const AlwaysStoppedAnimation(81 / 360),
-              child: Align(
-                alignment: const Alignment(-1.5, -0.85),
-                child: SizedBox(
-                  height: 434.48,
-                  width: 182,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: tdBGColor,
-                      borderRadius: BorderRadius.circular(77)
-                    ),
-                  ),
-                )
-              )
-            )
-          ),
-          ShaderMask( 
-            shaderCallback : (rect){
-              return LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topCenter,
-                colors: [Colors.white, tdBGColor],
-              ).createShader(Rect.fromLTRB(500, 168, 315, 250));
-            },
-            child: RotationTransition(
-              turns: const AlwaysStoppedAnimation(275 / 360),
-              child: Align(
-                alignment: const Alignment(-1.35, -0.4),
-                child: SizedBox(
-                  height: 444,
-                  width: 182,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: tdBGColor,
-                      borderRadius: BorderRadius.circular(77)
-                    ),
-                  ),
-                )
-              )
-            )
-          ),
+          backgroundRectangleOne(),
+          backgroundRectangleTwo(),
           introductionMessage(),
           Center( 
             child : SizedBox(
@@ -75,6 +27,9 @@ class _HomeState extends State<Home> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(95.0),
+                  ),
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
@@ -95,10 +50,109 @@ class _HomeState extends State<Home> {
               height: 60,
               width: 59,
             )
+          ),
+          Align(
+            alignment: Alignment(1, 0.77),
+            child: Row(
+              children: [
+                const SizedBox(width: 12),
+                Row(
+                  children: [
+                    Icon(Icons.linked_camera_outlined),
+                    Text('@Quipux',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                      )
+                    )
+                  ]
+                ),
+                const SizedBox(width: 33),
+                Row(
+                  children: [
+                    Icon(Icons.language),
+                    Text('Quipux.com',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                      )
+                    )
+                  ]
+                ),
+                const SizedBox(width: 33),
+                Row(
+                  children: [
+                    Icon(Icons.facebook),
+                    Text('Quipux',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                      )
+                    )
+                  ]
+                )
+              ],
+            )
           )
         ]
       ),
     );
+  }
+
+  ShaderMask backgroundRectangleTwo() {
+    return ShaderMask( 
+          shaderCallback : (rect){
+            return LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topCenter,
+              colors: [Colors.white, tdBGColor],
+            ).createShader(Rect.fromLTRB(500, 168, 315, 250));
+          },
+          child: RotationTransition(
+            turns: const AlwaysStoppedAnimation(275 / 360),
+            child: Align(
+              alignment: const Alignment(-1.35, -0.4),
+              child: SizedBox(
+                height: 444,
+                width: 182,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tdBGColor,
+                    borderRadius: BorderRadius.circular(77)
+                  ),
+                ),
+              )
+            )
+          )
+        );
+  }
+
+  ShaderMask backgroundRectangleOne() {
+    return ShaderMask( 
+          shaderCallback : (rect){
+            return LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomLeft,
+              colors: [tdBGColor, Colors.white],
+            ).createShader(Rect.fromLTRB(155, 209, 780, 25));
+          },
+          child: RotationTransition(
+            turns: const AlwaysStoppedAnimation(81 / 360),
+            child: Align(
+              alignment: const Alignment(-1.5, -0.85),
+              child: SizedBox(
+                height: 434.48,
+                width: 182,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tdBGColor,
+                    borderRadius: BorderRadius.circular(77)
+                  ),
+                ),
+              )
+            )
+          )
+        );
   }
 
   Align introductionMessage() {
