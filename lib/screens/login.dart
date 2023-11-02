@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
                 //Use to add space between Textfields
                 MyTextField(
                   myController: _studentEmailController,
-                  fieldName: "Correo electronico",
+                  fieldName: "Correo electrónico",
                   myIcon: Icons.email,
                   prefixIconColor: Colors.deepPurple.shade300
                 ),
